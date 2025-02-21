@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\invoiceController;
 
 // Route::get('/', function () {
 //     return view('welcome');
 // });
 
-Route::get('/', 'invoiceController@index')->name('invoice.index');
+Route::get('/', [InvoiceController::class, 'index'])->name('invoice.index');
