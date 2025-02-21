@@ -18,7 +18,7 @@ return new class extends Migration
             $table->date("due_date");
             $table->decimal('grand_total', 10, 2);
             $table->json('items'); //
-            $table->enum('status', ['draft', 'sent', 'paid', 'canceled']);
+            $table->enum('status', ['pending', 'draft', 'sent', 'paid', 'canceled']);
             $table->string('uploadUrl')->nullable();
 
 
