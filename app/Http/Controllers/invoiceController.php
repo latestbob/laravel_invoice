@@ -14,15 +14,28 @@ class invoiceController extends Controller
     public function index(Request $request){
 
         $status = $request->query('status');
-
-        $invoices = Invoice::all();
-
-
+        $startDate = $request->query('start_date');
+        $endDate = $request->query('end_date');
+    
+        // Start with a query builder
+        $query = Invoice::query();
+    
         if ($status) {
-            $invoices = $invoices->where('status', $status);
+            $query->where('status', $status);
+        }
+    
+        if ($startDate) {
+            $query->whereDate('due_date', '>=', $startDate); // Ensure date comparison works
         }
 
-        return view('invoice.index', compact("invoices"));
+        if ($endDate) {
+            $query->whereDate('due_date', '<=', $endDate); // Ensure date comparison works
+        }
+    
+        // Execute the query and get results
+        $invoices = $query->get();
+    
+        return view('invoice.index', compact('invoices'));
     }
 
     //store invoice

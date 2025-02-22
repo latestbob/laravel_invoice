@@ -68,10 +68,14 @@
     </div>
 
     <!-- Start Date and End Date Filters (Right, col-4) -->
-    <div class="col-md-4 d-flex justify-content-end gap-3">
-        <input type="date" name="start_date" class="form-control" id="startDate" placeholder="Start Date">
-        <input type="date" name="end_date" class="form-control" id="endDate" placeholder="End Date">
-    </div>
+    <div class="col-md-7 d-flex justify-content-end align-items-center">
+    <label for="startDate" class="me-2">Start</label>
+
+    <input type="date" name="start_date"value="{{ request('start_date') }}" class="form-control me-3" id="startDate">
+
+    <label for="endDate" class="me-2">End</label>
+    <input type="date" name="end_date"value="{{ request('end_date') }}" class="form-control" id="endDate">
+</div>
 </div>
 
     <!-- end of filters -->
@@ -353,6 +357,40 @@
 
         window.location.href = url.toString();
     }
+</script>
+
+<!-- filter start date -->
+
+<script>
+    document.getElementById('startDate').addEventListener('change', function () {
+    const startDate = this.value;
+    const url = new URL(window.location.href);
+
+    if (startDate) {
+        url.searchParams.set('start_date', startDate);
+    } else {
+        url.searchParams.delete('start_date');
+    }
+
+    window.location.href = url.toString();
+});
+</script>
+
+<!-- filter end date -->
+
+<script>
+    document.getElementById('endDate').addEventListener('change', function () {
+    const endDate = this.value;
+    const url = new URL(window.location.href);
+
+    if (endDate) {
+        url.searchParams.set('end_date', endDate);
+    } else {
+        url.searchParams.delete('end_date');
+    }
+
+    window.location.href = url.toString();
+});
 </script>
   </body>
 </html>
