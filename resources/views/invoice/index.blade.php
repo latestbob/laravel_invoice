@@ -48,7 +48,36 @@
 
     @endif
 
+     
+
     <div class="container mt-4">
+
+    <!-- filters  -->
+
+    <div class="row align-items-center justify-content-between mb-5">
+    <!-- Status Filter (Left, col-4) -->
+    <div class="col-md-4">
+        <select name="status" class="form-control" id="status" onchange="filterStatus(this)">
+            <option value="">Filter Status</option>
+            <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>Pending</option>
+            <option value="draft" {{ request('status') == 'draft' ? 'selected' : '' }}>Draft</option>
+            <option value="sent" {{ request('status') == 'sent' ? 'selected' : '' }}>Sent</option>
+            <option value="paid" {{ request('status') == 'paid' ? 'selected' : '' }}>Paid</option>
+            <option value="canceled" {{ request('status') == 'canceled' ? 'selected' : '' }}>Canceled</option>
+        </select>
+    </div>
+
+    <!-- Start Date and End Date Filters (Right, col-4) -->
+    <div class="col-md-4 d-flex justify-content-end gap-3">
+        <input type="date" name="start_date" class="form-control" id="startDate" placeholder="Start Date">
+        <input type="date" name="end_date" class="form-control" id="endDate" placeholder="End Date">
+    </div>
+</div>
+
+    <!-- end of filters -->
+     <hr>
+
+
         <!-- Invoice List Table -->
         <div class="card shadow-sm">
             <div class="card-body">
@@ -309,5 +338,21 @@
     this.submit();
 });
     </script>
+
+    <!-- filter status -->
+    <script>
+    function filterStatus(selectElement) {
+        const selectedValue = selectElement.value;
+        const url = new URL(window.location.href);
+
+        if (selectedValue) {
+            url.searchParams.set('status', selectedValue);
+        } else {
+            url.searchParams.delete('status');
+        }
+
+        window.location.href = url.toString();
+    }
+</script>
   </body>
 </html>

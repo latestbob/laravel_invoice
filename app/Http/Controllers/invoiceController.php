@@ -11,9 +11,16 @@ class invoiceController extends Controller
 {
     //invoice index
 
-    public function index(){
+    public function index(Request $request){
+
+        $status = $request->query('status');
 
         $invoices = Invoice::all();
+
+
+        if ($status) {
+            $invoices = $invoices->where('status', $status);
+        }
 
         return view('invoice.index', compact("invoices"));
     }
