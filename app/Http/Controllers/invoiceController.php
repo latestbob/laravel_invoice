@@ -35,6 +35,8 @@ class invoiceController extends Controller
 
         ]);
 
+       
+
         $uploadedUrl = '';
         if($request->hasFile('file')){
             
@@ -85,5 +87,60 @@ class invoiceController extends Controller
         $invoice = Invoice::where('invoice_number', $invoice_number)->first();
 
         return view('invoice.edit', compact('invoice'));
+    }
+
+    //update invoice
+
+    public function update(Request $request, $invoice_number){
+
+        $request->validate([
+            'customer_name' => 'required',
+            'grand_total' => 'required',
+            'items' => 'required',
+            'status' => 'required',
+
+            'file' => 'nullable|mimes:jpeg,png,jpg,gif,pdf,xlsx,xls|max:102400',
+           
+
+        ]);
+
+        //  dd(json_decode($request->items, true));
+
+
+        $uploadedUrl = '';
+        if($request->hasFile('file')){
+            
+         
+            $cloudinary = new Cloudinary();
+
+
+            $uploadedFile = $cloudinary->uploadApi()->upload(
+                $request->file('file')->getRealPath(),
+                ['resource_type' => 'auto']
+            );
+            $uploadedUrl = $uploadedFile['secure_url'];
+
+            // dd($uploadedUrl);
+        }
+
+        $invoice = Invoice::where("invoice_number",$invoice_number)->first();
+
+        $invoice->customer_name = $request->customer_name;
+        $invoice->grand_total = $request->grand_total;
+        $invoice->items =  json_decode($request->items, true);
+        $invoice->status = $request->status;
+        if ($uploadedUrl) {
+            $invoice->uploadUrl = $uploadedUrl;
+        }
+
+        $invoice->save();
+
+        
+
+
+        return redirect()->route('invoice.index')->with('success', 'Invoice updated successfully');
+
+
+
     }
 }

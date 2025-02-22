@@ -15,3 +15,5 @@ Route::post('/invoice/store', [InvoiceController::class, 'store'])->name('invoic
 Route::get('/invoice/{invoice_number}', [InvoiceController::class, 'show'])->name('invoice.show');
 
 Route::get('/invoice/{invoice_number}/edit', [InvoiceController::class, 'edit'])->name('invoice.edit');
+
+Route::put('/invoice/{invoice_number}', [InvoiceController::class, 'update'])->name('invoice.update');

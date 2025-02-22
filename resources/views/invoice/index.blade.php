@@ -13,7 +13,7 @@
    <nav class="navbar navbar-expand-lg navbar-light bg-black shadow-sm py-3">
         <div class="container-fluid px-5">
             <!-- Logo/Brand -->
-            <a class="navbar-brand fw-bold text-white" href="#">Sales Invoice</a>
+            <a class="navbar-brand fw-bold text-white" href="/">Sales Invoice</a>
             <!-- Create Invoice Button -->
             <div class="d-flex">
                 <button type="button" class="btn btn-primary"data-bs-toggle="modal" data-bs-target="#createInvoiceModal">Create Invoice</button>
@@ -58,7 +58,7 @@
                             <th scope="col">Invoice #</th>
                             <th scope="col">Date</th>
                             <th scope="col">Customer</th>
-                            <th scope="col">Amount</th>
+                            <th scope="col">Amount(N)</th>
                             <th scope="col">Status</th>
                             <th scope="col">Actions</th>
                         </tr>
@@ -92,7 +92,7 @@
                             <td>
 
                             <a href="{{ route('invoice.show', $invoice->invoice_number) }}" class="btn btn-sm btn-primary">View</a>
-                                <a href="#" class="btn btn-sm btn-warning">Edit</a>
+                                <a href="{{ route('invoice.edit', $invoice->invoice_number) }}" class="btn btn-sm btn-warning">Edit</a>
                                 <a href="#" class="btn btn-sm btn-danger">Delete</a>
 
                                 @if($invoice->uploadUrl)
@@ -100,6 +100,10 @@
                                 @endif
                             </td>
                         </tr>
+
+                        <!-- delete modal here -->
+
+                        <!-- end of delete modal -->
 
                         @endforeach
                         

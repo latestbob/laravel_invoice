@@ -13,7 +13,7 @@
    <nav class="navbar navbar-expand-lg navbar-light bg-black shadow-sm py-3">
         <div class="container-fluid px-5">
             <!-- Logo/Brand -->
-            <a class="navbar-brand fw-bold text-white" href="#">Sales Invoice</a>
+            <a class="navbar-brand fw-bold text-white" href="/">Sales Invoice</a>
             <!-- Create Invoice Button -->
             <div class="d-flex">
                 <a href="/" class="btn btn-primary">Back</a>
