@@ -132,7 +132,7 @@
                             <input type="text"name="grand_total"value="{{$invoice->grand_total}}" class="form-control" id="grandTotal" readonly>
                         </div>
                 <div class="col">
-                            <label for="grandTotal" class="form-label">Upload file <span><small>optional (images, pdf, excel only)</small></span></label>
+                            <label for="grandTotal" class="form-label">Upload file <span><small>optional (images, docx, excel only)</small></span></label>
                             <input type="file" class="form-control" id="file" name="file">
                         </div>
                 </div>

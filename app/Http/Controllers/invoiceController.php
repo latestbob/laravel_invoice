@@ -33,7 +33,9 @@ class invoiceController extends Controller
         }
     
         // Execute the query and get results
-        $invoices = $query->get();
+
+       $invoices =  $query->orderBy('created_at', 'desc')->paginate(5);
+       
     
         return view('invoice.index', compact('invoices'));
     }
@@ -50,7 +52,7 @@ class invoiceController extends Controller
             'items' => 'required',
             'status' => 'required',
 
-            'file' => 'nullable|mimes:jpeg,png,jpg,gif,pdf,xlsx,xls|max:102400',
+            'file' => 'nullable|mimes:jpeg,png,jpg,gif,docx,xlsx,xls|max:102400',
            
 
         ]);
@@ -119,7 +121,7 @@ class invoiceController extends Controller
             'items' => 'required',
             'status' => 'required',
 
-            'file' => 'nullable|mimes:jpeg,png,jpg,gif,pdf,xlsx,xls|max:102400',
+            'file' => 'nullable|mimes:jpeg,png,jpg,gif,docx,xlsx,xls|max:102400',
            
 
         ]);

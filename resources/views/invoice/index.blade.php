@@ -170,9 +170,19 @@
                         
                     </tbody>
                 </table>
+
+               
+<!-- Pagination Links -->
+
             </div>
         </div>
     </div>
+
+    <div class="mt-4 d-flex justify-content-center">
+    {{ $invoices->links('pagination::bootstrap-5') }}
+</div>
+
+
 
     <!-- Create Invoice Modal -->
     <div class="modal fade" id="createInvoiceModal" tabindex="-1" aria-labelledby="createInvoiceModalLabel" aria-hidden="true">
@@ -248,7 +258,7 @@
 
 
                         <div class="mb-3">
-                            <label for="grandTotal" class="form-label">Upload file <span><small>optional (images, pdf, excel only)</small></span></label>
+                            <label for="grandTotal" class="form-label">Upload file <span><small>optional (images, docx, excel only)</small></span></label>
                             <input type="file" class="form-control" id="file" name="file">
                         </div>
                     </form>
