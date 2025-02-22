@@ -143,4 +143,13 @@ class invoiceController extends Controller
 
 
     }
+
+
+    //delete invoice
+
+    public function destroy(Request $request, $id){
+        $invoice = Invoice::find($id)->delete();
+
+        return back()->with('success', 'Invoice deleted successfully');
+    }
 }

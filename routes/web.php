@@ -17,3 +17,5 @@ Route::get('/invoice/{invoice_number}', [InvoiceController::class, 'show'])->nam
 Route::get('/invoice/{invoice_number}/edit', [InvoiceController::class, 'edit'])->name('invoice.edit');
 
 Route::put('/invoice/{invoice_number}', [InvoiceController::class, 'update'])->name('invoice.update');
+
+Route::delete('/invoice/{id}', [InvoiceController::class, 'destroy'])->name('invoice.destroy');

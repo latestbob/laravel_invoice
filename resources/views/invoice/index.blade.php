@@ -93,7 +93,7 @@
 
                             <a href="{{ route('invoice.show', $invoice->invoice_number) }}" class="btn btn-sm btn-primary">View</a>
                                 <a href="{{ route('invoice.edit', $invoice->invoice_number) }}" class="btn btn-sm btn-warning">Edit</a>
-                                <a href="#" class="btn btn-sm btn-danger">Delete</a>
+                                <button type="button" class="btn btn-sm btn-danger"data-bs-toggle="modal" data-bs-target="#exampleModal{{$invoice->id}}">Delete</button>
 
                                 @if($invoice->uploadUrl)
                                 <a href="{{$invoice->uploadUrl}}"target="_blank" class="btn btn-sm btn-info text-light" download><i class="fa fa-download text-light"></i> Attachment</a>
@@ -102,6 +102,34 @@
                         </tr>
 
                         <!-- delete modal here -->
+
+                        <!-- Modal -->
+                            <div class="modal fade" id="exampleModal{{$invoice->id}}" tabindex="-1" aria-labelledby="exampleModalLabel{{$invoice->id}}" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel{{$invoice->id}}">Invoice -  {{$invoice->invoice_number}}</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                   <p class="">Are you sure you want to delete this invoice ?</p>
+                                </div>
+                                <form action="{{route('invoice.destroy', $invoice->id)}}"method="POST">
+                                    @csrf
+                                    @method('DELETE')
+
+                               
+
+                                
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-danger">Yes, Delete</button>
+                                </div>
+
+                                </form>
+                                </div>
+                            </div>
+                            </div>
 
                         <!-- end of delete modal -->
 
